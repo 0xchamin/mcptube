@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can Lewis Hamilton & Ferrari turn around their form in 2026? - Video Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #dc0000 0%, #8B0000 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .meta-item strong {
+            opacity: 0.9;
+        }
+        
+        .content-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #dc0000;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #dc0000;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .summary-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #dc0000;
+        }
+        
+        .summary-box h3 {
+            color: #dc0000;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .summary-box p {
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .frames-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .frame-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .frame-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .frame-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .frame-caption {
+            padding: 15px;
+            color: #333;
+        }
+        
+        .frame-timestamp {
+            font-weight: bold;
+            color: #dc0000;
+            font-family: monospace;
+            margin-bottom: 5px;
+        }
+        
+        .key-points {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .key-points li {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-left: 4px solid #dc0000;
+            border-radius: 4px;
+        }
+        
+        .key-points li:before {
+            content: "🏎️ ";
+            margin-right: 10px;
+        }
+        
+        .transcript {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .transcript-entry {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid #dc0000;
+        }
+        
+        .timestamp {
+            color: #dc0000;
+            font-weight: bold;
+            font-family: monospace;
+            margin-right: 10px;
+        }
+        
+        .speaker-text {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .video-link {
+            display: inline-block;
+            background: #dc0000;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        .video-link:hover {
+            background: #8B0000;
+        }
+        
+        .insights {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .insights h3 {
+            color: #dc0000;
+            margin-bottom: 15px;
+        }
+        
+        .quote {
+            font-style: italic;
+            padding: 15px;
+            background: white;
+            border-left: 4px solid #dc0000;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏎️ Can Lewis Hamilton & Ferrari turn around their form in 2026?</h1>
+            <div class="meta">
+                <div class="meta-item">
+                    <strong>Channel:</strong> Sky Sports F1
+                </div>
+                <div class="meta-item">
+                    <strong>Duration:</strong> 3:17
+                </div>
+                <div class="meta-item">
+                    <strong>Video ID:</strong> NMqyeRpV-qk
+                </div>
+            </div>
+            <a href="https://www.youtube.com/watch?v=NMqyeRpV-qk" class="video-link" target="_blank">▶ Watch on YouTube</a>
+        </header>
+
+        <div class="content-card">
+            <h2 class="section-title">📊 Executive Summary</h2>
+            <p>This Sky Sports F1 discussion analyzes Lewis Hamilton's challenging 2025 season at Ferrari and the prospects for a turnaround in 2026. The conversation features insights from former F1 drivers and experts discussing Hamilton's struggles, the team dynamics at Ferrari, and the critical race engineer change that could be pivotal for his success.</p>
+            
+            <div class="summary-grid">
+                <div class="summary-box">
+                    <h3>The Challenge</h3>
+                    <p>At 41 years old, Lewis Hamilton faces a pivotal year at Ferrari after a difficult first season. The team struggled to find chemistry, and Hamilton's input wasn't being properly heard or implemented.</p>
+                </div>
+                <div class="summary-box">
+                    <h3>The Change</h3>
+                    <p>Hamilton is changing his race engineer - a significant move that experts believe was necessary as the previous relationship wasn't working. This could be the catalyst for success.</p>
+                </div>
+                <div class="summary-box">
+                    <h3>The Hope</h3>
+                    <p>With proper support and a team that listens to his seven-time world champion experience, there's optimism that we could see a "vintage Lewis" emerge in 2026.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">🎥 Key Moments from the Discussion</h2>
+            <p>Frames extracted from the video at key timestamps:</p>
+            <div class="frames-gallery">
+                <div class="frame-card">
+                    <img src="file:///Users/lokugamh/.mcptube/frames/NMqyeRpV-qk_10.00.jpg" alt="Frame at 10 seconds" onerror="this.src='https://i.ytimg.com/vi/NMqyeRpV-qk/maxresdefault.jpg'">
+                    <div class="frame-caption">
+                        <div class="frame-timestamp">⏱️ 00:10</div>
+                        <p>"Lewis faces a pivotal year at Ferrari. He's 41..."</p>
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <img src="file:///Users/lokugamh/.mcptube/frames/NMqyeRpV-qk_40.00.jpg" alt="Frame at 40 seconds" onerror="this.src='https://i.ytimg.com/vi/NMqyeRpV-qk/maxresdefault.jpg'">
+                    <div class="frame-caption">
+                        <div class="frame-timestamp">⏱️ 00:40</div>
+                        <p>"I've got a special place for Ferrari. I've been there 10 years..."</p>
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <img src="file:///Users/lokugamh/.mcptube/frames/NMqyeRpV-qk_60.00.jpg" alt="Frame at 60 seconds" onerror="this.src='https://i.ytimg.com/vi/NMqyeRpV-qk/maxresdefault.jpg'">
+                    <div class="frame-caption">
+                        <div class="frame-timestamp">⏱️ 01:00</div>
+                        <p>"You retired at the top. How do you sense Lewis is dealing with his situation?"</p>
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <img src="file:///Users/lokugamh/.mcptube/frames/NMqyeRpV-qk_120.00.jpg" alt="Frame at 120 seconds" onerror="this.src='https://i.ytimg.com/vi/NMqyeRpV-qk/maxresdefault.jpg'">
+                    <div class="frame-caption">
+                        <div class="frame-timestamp">⏱️ 02:00</div>
+                        <p>"I think he needed to change the race engineer. The relationship wasn't working..."</p>
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <img src="file:///Users/lokugamh/.mcptube/frames/NMqyeRpV-qk_143.12.jpg" alt="Frame at 143 seconds" onerror="this.src='https://i.ytimg.com/vi/NMqyeRpV-qk/maxresdefault.jpg'">
+                    <div class="frame-caption">
+                        <div class="frame-timestamp">⏱️ 02:23</div>
+                        <p>"Lewis Hamilton is changing his race engineer. It feels significant..."</p>
+                    </div>
+                </div>
+                <div class="frame-card">
+                    <img src="file:///Users/lokugamh/.mcptube/frames/NMqyeRpV-qk_180.00.jpg" alt="Frame at 180 seconds" onerror="this.src='https://i.ytimg.com/vi/NMqyeRpV-qk/maxresdefault.jpg'">
+                    <div class="frame-caption">
+                        <div class="frame-timestamp">⏱️ 03:00</div>
+                        <p>"Lewis needs to go there with a team to interpret what he needs behind the wheel..."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">🔑 Key Insights</h2>
+            <ul class="key-points">
+                <li><strong>Ferrari's Infrastructure Challenge:</strong> The disconnect between Hamilton and his race engineer highlighted deeper issues with team communication and infrastructure. Ferrari's ability to listen to their star driver's feedback will be crucial.</li>
+                
+                <li><strong>The Race Engineer Change:</strong> The new race engineer appointment is significant because Hamilton has worked with this person previously, bringing existing trust and understanding of "Lewis speak" - how he communicates his needs from the cockpit.</li>
+                
+                <li><strong>Experience vs. Infrastructure:</strong> Hamilton's seven-time world championship experience is invaluable, but it needs to be properly leveraged by a team infrastructure that respects and acts on his input.</li>
+                
+                <li><strong>Team Principal Fred Vasseur:</strong> While experts acknowledge the difficulty of assessing internal operations from outside, 2026 will be a critical measure of Vasseur's leadership and ability to build a winning environment.</li>
+                
+                <li><strong>The Fine Line:</strong> Success in F1 often comes down to small margins. The difference between a team "jelling" and "not quite jelling" can determine championships. Ferrari came close but missed that chemistry in 2025.</li>
+                
+                <li><strong>Hamilton's Legacy Concerns:</strong> Unlike drivers who retired as champions, Hamilton is racing into the latter part of his career needing to prove he can succeed outside Mercedes. This Ferrari chapter is critical for his legacy.</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">💭 Expert Perspectives</h2>
+            
+            <div class="insights">
+                <h3>On Ferrari's Culture</h3>
+                <div class="quote">
+                    "I've got a special place for Ferrari. I've been there 10 years. I know how tough it is there. But, you know, there's always a fine line between a team jelling and not quite jelling. And it didn't quite gel last year."
+                </div>
+            </div>
+
+            <div class="insights">
+                <h3>On Hamilton's Needed Support</h3>
+                <div class="quote">
+                    "Lewis needs to go there with a team so as at least they understood Lewis speak when he's inside the car what it all means and to interpret what Lewis really needs behind the wheel. I think he needed some help to really flourish there quickly."
+                </div>
+            </div>
+
+            <div class="insights">
+                <h3>On The Communication Problem</h3>
+                <div class="quote">
+                    "The big problem for me that I saw from the outside last year was that he wasn't being listened to. And when you've got a seven-time world champion trying to give advice, you should take it right."
+                </div>
+            </div>
+
+            <div class="insights">
+                <h3>On The Race Engineer Change</h3>
+                <div class="quote">
+                    "I think he needed to change the race engineer. The relationship just wasn't working... If it's the person that I'm thinking it's going to be, at least Lewis has worked with them previously and has that relationship already. And I think that might be key."
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">🎯 Critical Success Factors for 2026</h2>
+            <div class="summary-grid">
+                <div class="summary-box">
+                    <h3>1. Communication</h3>
+                    <p>Ferrari must listen to and act on Hamilton's technical feedback. His championship experience should be leveraged, not ignored.</p>
+                </div>
+                <div class="summary-box">
+                    <h3>2. Race Engineer Chemistry</h3>
+                    <p>The new race engineer relationship needs to build quickly. Previous working experience should accelerate this process.</p>
+                </div>
+                <div class="summary-box">
+                    <h3>3. Team Unity</h3>
+                    <p>Hamilton needs to feel supported and that people are on his side. Team morale and unity will be critical.</p>
+                </div>
+                <div class="summary-box">
+                    <h3>4. Quick Adaptation</h3>
+                    <p>While relationships take time to develop, Ferrari and Hamilton don't have unlimited time. Progress needs to be visible early.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">📝 Full Transcript</h2>
+            <div class="transcript">
+                <div class="transcript-entry">
+                    <span class="timestamp">[00:00]</span>
+                    <span class="speaker-text">Lewis faces a pivotal year at Ferrari. He's 41. It was a difficult first season. How tough will it be for him to recover, turn it around and make a success of this chapter?</span>
+                </div>
+                <div class="transcript-entry">
+                    <span class="timestamp">[00:17]</span>
+                    <span class="speaker-text">I think we'd all love for him to be successful. I mean, I've got a special place for Ferrari. I've been there 10 years. I know how tough it is there. But, you know, there's always a fine line between a team jelling and not quite jelling. And it didn't quite gel last year, but I mean, you know, if he's if he gets some incentives, if he sees an opportunity, I think we'll see a vintage Lewis. So, I'm hoping that happens.</span>
+                </div>
+                <div class="transcript-entry">
+                    <span class="timestamp">[00:41]</span>
+                    <span class="speaker-text">You think Fred is doing a decent job there in the circumstances. The right man to lead the team.</span>
+                </div>
+                <div class="transcript-entry">
+                    <span class="timestamp">[00:47]</span>
+                    <span class="speaker-text">Yeah. I mean, what you don't see, and you can't judge, is the infrastructure behind Fred and, you know, the engineers, how well they're working. I don't know how that's all functioning, but I think it will be a measure of Fred this year.</span>
+                </div>
+                <div class="transcript-entry">
+                    <span class="timestamp">[01:00]</span>
+                    <span class="speaker-text">You retired at the top. You retired as champion. How do you sense Lewis Hamilton is dealing with his situation now at Ferrari? He's obviously nearer the end of his career than the beginning. It's maybe the last few years. How big a challenge to make a success of this Ferrari chapter after that first year?</span>
+                </div>
+                <div class="transcript-entry">
+                    <span class="timestamp">[01:21]</span>
+                    <span class="speaker-text">Well, he's one of the greatest drivers of all time with a tremendous record in Formula 1. The season - this is a big year for a lot of drivers. Lewis in particular, I mean there's a lot of he's got a lot of well-wishers around the world. He's changing race engineer. Could it click into place for him and be a success this year?</span>
+                </div>
+                <div class="transcript-entry">
+                    <span class="timestamp">[01:43]</span>
+                    <span class="speaker-text">I think he needed to change the race engineer. The relationship just wasn't working. And look, he very much hinted to us at the end of last year that changes were coming and that this would be one of them. Will it click? I hope so. Will it take time? These things often do. But if it's the person that I'm thinking it's going to be, at least Lewis has worked with them previously and has that relationship already. And I think that might be key.</span>
+                </div>
+                <div class="transcript-entry">
+                    <span class="timestamp">[02:07]</span>
+                    <span class="speaker-text">Lewis needs to feel that there are people on his side and that he has been listened to at Ferrari because the big problem for me that I saw from the outside last year that he wasn't being listened to. And when you've got a seven-time world champion trying to give advice, you should take it right.</span>
+                </div>
+                <div class="transcript-entry">
+                    <span class="timestamp">[02:26]</span>
+                    <span class="speaker-text">Lewis Hamilton is changing his race engineer. It's one step, but it feels significant. Is it a sign Ferrari are listening to what he wants to be done? Surprised it probably didn't happen a bit earlier really judging by all the things that were going on last year.</span>
+                </div>
+                <div class="transcript-entry">
+                    <span class="timestamp">[02:43]</span>
+                    <span class="speaker-text">You kind of - something I said on Sky F1 is Lewis needs to go there with a team so as at least they understood Lewis speak when he's inside the car what it all means and to interpret what Lewis really needs behind the wheel. I think he needed some help to really flourish there quickly. So, let's see who turns up as his engineer now. But just listening to the radio and watching the performance and although they obviously put a varnish on it, didn't they through last season, something needed to change.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">🎬 Conclusion</h2>
+            <p>The 2026 season represents a critical juncture for Lewis Hamilton's Ferrari journey. After a challenging 2025 debut season marked by communication issues and a lack of team chemistry, the race engineer change signals Ferrari's willingness to adapt to their star driver's needs.</p>
+            
+            <p style="margin-top: 15px;">The consensus among F1 experts is cautiously optimistic: if Hamilton receives proper support, if Ferrari listens to his championship-winning experience, and if the new race engineer relationship clicks quickly, we could witness a return to form for one of the sport's greatest drivers.</p>
+            
+            <p style="margin-top: 15px;">However, time is not on Hamilton's side. At 41, these may be his final years in F1, making success at Ferrari crucial for cementing his legacy outside of Mercedes. The 2026 season will be a litmus test not just for Hamilton, but also for team principal Fred Vasseur's leadership and Ferrari's ability to create a winning environment for a driver of Hamilton's caliber.</p>
+        </div>
+
+        <footer>
+            <p>Report generated with MCPTube | Video source: Sky Sports F1</p>
+            <p style="margin-top: 10px;"><a href="https://www.youtube.com/watch?v=NMqyeRpV-qk" target="_blank">Watch the original video</a></p>
+        </footer>
+    </div>
+</body>
+</html>
