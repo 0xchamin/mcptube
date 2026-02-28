@@ -8,7 +8,6 @@ from mcptube.models import Chapter, TranscriptSegment, Video
 from mcptube.storage.repository import VideoRepository
 
 
-
 class SQLiteVideoRepository(VideoRepository):
     """SQLite-backed video storage.
 
@@ -40,18 +39,14 @@ class SQLiteVideoRepository(VideoRepository):
                      Use ":memory:" for testing.
         """
         self._db_path = db_path or str(settings.db_path)
+        self._conn = sqlite3.connect(self._db_path)
+        self._conn.row_factory = sqlite3.Row
         self._init_db()
-
-    def _get_connection(self) -> sqlite3.Connection:
-        """Create a new database connection with row factory enabled."""
-        conn = sqlite3.connect(self._db_path)
-        conn.row_factory = sqlite3.Row
-        return conn
 
     def _init_db(self) -> None:
         """Create tables if they don't exist."""
-        with self._get_connection() as conn:
-            conn.execute(self._CREATE_TABLE)
+        self._conn.execute(self._CREATE_TABLE)
+        self._conn.commit()
 
     def save(self, video: Video) -> None:
         """Persist a video to storage. Upserts if video_id already exists."""
@@ -70,25 +65,24 @@ class SQLiteVideoRepository(VideoRepository):
                 transcript = excluded.transcript,
                 tags = excluded.tags
         """
-        with self._get_connection() as conn:
-            conn.execute(sql, (
-                video.video_id,
-                video.title,
-                video.description,
-                video.channel,
-                video.duration,
-                video.thumbnail_url,
-                json.dumps([ch.model_dump() for ch in video.chapters]),
-                json.dumps([seg.model_dump() for seg in video.transcript]),
-                json.dumps(video.tags),
-                video.added_at.isoformat(),
-            ))
+        self._conn.execute(sql, (
+            video.video_id,
+            video.title,
+            video.description,
+            video.channel,
+            video.duration,
+            video.thumbnail_url,
+            json.dumps([ch.model_dump() for ch in video.chapters]),
+            json.dumps([seg.model_dump() for seg in video.transcript]),
+            json.dumps(video.tags),
+            video.added_at.isoformat(),
+        ))
+        self._conn.commit()
 
     def get(self, video_id: str) -> Video | None:
         """Retrieve a video by ID with full transcript. Returns None if not found."""
         sql = "SELECT * FROM videos WHERE video_id = ?"
-        with self._get_connection() as conn:
-            row = conn.execute(sql, (video_id,)).fetchone()
+        row = self._conn.execute(sql, (video_id,)).fetchone()
         if row is None:
             return None
         return self._row_to_video(row, include_transcript=True)
@@ -96,21 +90,19 @@ class SQLiteVideoRepository(VideoRepository):
     def list_all(self) -> list[Video]:
         """List all videos — metadata only, no transcript or chapters for efficiency."""
         sql = "SELECT * FROM videos ORDER BY added_at DESC"
-        with self._get_connection() as conn:
-            rows = conn.execute(sql).fetchall()
+        rows = self._conn.execute(sql).fetchall()
         return [self._row_to_video(row, include_transcript=False) for row in rows]
 
     def delete(self, video_id: str) -> None:
         """Remove a video from storage. No-op if video_id does not exist."""
         sql = "DELETE FROM videos WHERE video_id = ?"
-        with self._get_connection() as conn:
-            conn.execute(sql, (video_id,))
+        self._conn.execute(sql, (video_id,))
+        self._conn.commit()
 
     def exists(self, video_id: str) -> bool:
         """Check whether a video with the given ID is in storage."""
         sql = "SELECT 1 FROM videos WHERE video_id = ? LIMIT 1"
-        with self._get_connection() as conn:
-            return conn.execute(sql, (video_id,)).fetchone() is not None
+        return self._conn.execute(sql, (video_id,)).fetchone() is not None
 
     @staticmethod
     def _row_to_video(row: sqlite3.Row, *, include_transcript: bool) -> Video:

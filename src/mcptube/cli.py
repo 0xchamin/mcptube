@@ -279,7 +279,7 @@ def serve(
     from mcptube.server import mcp
 
     if stdio:
-        typer.echo("Starting mcptube MCP server (stdio)...")
+        typer.echo("Starting mcptube MCP server (stdio)...", err=True )
         mcp.run(transport="stdio")
     else:
         typer.echo(f"Starting mcptube MCP server on http://{host}:{port}/mcp")

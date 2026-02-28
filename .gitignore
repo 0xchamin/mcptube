@@ -36,3 +36,6 @@ htmlcov/
 
 # Environment
 .env
+
+dist/
+*.egg-info/

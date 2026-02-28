@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from pydantic import Field
+from pydantic import Field, model_validator
 from pydantic_settings import BaseSettings
 
 
@@ -20,24 +20,29 @@ class Settings(BaseSettings):
         default_factory=lambda: Path.home() / ".mcptube",
         description="Root directory for all mcptube data",
     )
+    frames_dir: Path | None = Field(
+        default=None,
+        description="Directory for cached extracted frames. Defaults to data_dir/frames.",
+    )
 
     # Server
     host: str = "127.0.0.1"
     port: int = 9093
 
-
     # LLM (BYOK — used in CLI mode, wired up later)
     default_model: str = "gpt-4o"
+
+    @model_validator(mode="after")
+    def _set_defaults(self) -> "Settings":
+        """Set derived defaults that depend on other fields."""
+        if self.frames_dir is None:
+            self.frames_dir = self.data_dir / "frames"
+        return self
 
     @property
     def db_path(self) -> Path:
         """SQLite database path."""
         return self.data_dir / "mcptube.db"
-
-    @property
-    def frames_dir(self) -> Path:
-        """Directory for cached extracted frames."""
-        return self.data_dir / "frames"
 
     def ensure_dirs(self) -> None:
         """Create all required directories if they don't exist."""
