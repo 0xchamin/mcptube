@@ -125,7 +125,7 @@ class ReportBuilder:
             for frame in section.frames:
                 if frame.path and frame.path.exists():
                     lines.append(f"![{frame.reason}]({frame.path})")
-                    lines.append(f"*{frame.reason} [{self._fmt_time(frame.timestamp)}]*")
+                    lines.append(f"*{frame.reason} [{frame.video_id} @ {self._fmt_time(frame.timestamp)}]*")
                     lines.append("")
 
         if report.key_takeaways:
@@ -149,7 +149,7 @@ class ReportBuilder:
                     frames_html += (
                         f'<figure>'
                         f'<img src="data:image/jpeg;base64,{b64}" alt="{frame.reason}">'
-                        f'<figcaption>{frame.reason} [{self._fmt_time(frame.timestamp)}]</figcaption>'
+                        f'<figcaption>{frame.reason} [{frame.video_id} @ {self._fmt_time(frame.timestamp)}]</figcaption>'
                         f'</figure>\n'
                     )
             sections_html.append(
