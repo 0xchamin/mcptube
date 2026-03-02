@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     port: int = 9093
 
     # LLM (BYOK — used in CLI mode, wired up later)
-    default_model: str = "gpt-4o"
+    default_model: str = "gpt-4o"  # Can be overridden via MCPTUBE_DEFAULT_MODEL env var
 
     @model_validator(mode="after")
     def _set_defaults(self) -> "Settings":
