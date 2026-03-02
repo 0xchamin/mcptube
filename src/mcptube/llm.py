@@ -124,12 +124,53 @@ class LLMClient:
             raise LLMError(f"LLM request failed ({self._model}): {e}") from e
 
     def _detect_model(self) -> str:
-        """Auto-detect the best available model from environment keys."""
+        """Auto-detect the best available model from environment keys.
+        
+        Priority order:
+        1. Model passed to constructor
+        2. MCPTUBE_DEFAULT_MODEL environment variable
+        3. API key detection (ANTHROPIC, OPENAI, GOOGLE)
+        4. Default fallback to gpt-4o
+        
+        If OPENAI_BASE_URL is set AND OPENAI_API_KEY is present, prepends
+        'openai/' prefix to model names to route through the OpenAI-compatible
+        endpoint. This prevents masking the actual model when using API keys
+        from other cloud providers (Anthropic, Google, etc.) with a custom endpoint.
+        """
+        # Check if using OpenAI-compatible endpoint
+        openai_base_url = os.environ.get("OPENAI_BASE_URL")
+        openai_api_key = os.environ.get("OPENAI_API_KEY")
+        
+        # Only prepend 'openai/' prefix when using an OpenAI-compatible endpoint
+        # This means OPENAI_BASE_URL must be set AND OPENAI_API_KEY must be present
+        use_openai_prefix = openai_base_url is not None and openai_api_key is not None
+        
+        # Check for explicit MCPTUBE_DEFAULT_MODEL env var first
+        default_model_env = os.environ.get("MCPTUBE_DEFAULT_MODEL")
+        if default_model_env:
+            # Prepend 'openai/' prefix only when using OpenAI-compatible endpoint
+            if use_openai_prefix and not default_model_env.startswith("openai/"):
+                model = f"openai/{default_model_env}"
+            else:
+                model = default_model_env
+            logger.info("Using model from MCPTUBE_DEFAULT_MODEL: %s", model)
+            return model
+        
+        # Then check for API keys
         for key, model in self._KEY_TO_MODEL.items():
             if os.environ.get(key):
+                # Prepend 'openai/' prefix only when using OpenAI-compatible endpoint
+                # Don't prepend for non-OpenAI providers even if base_url is set
+                if use_openai_prefix and not model.startswith("openai/"):
+                    model = f"openai/{model}"
                 logger.info("Auto-detected LLM provider: %s → %s", key, model)
                 return model
-        return settings.default_model
+        
+        # Finally fallback to settings.default_model
+        fallback = settings.default_model
+        if use_openai_prefix and not fallback.startswith("openai/"):
+            fallback = f"openai/{fallback}"
+        return fallback
 
     @staticmethod
     def _parse_tags(response: str) -> list[str]:
