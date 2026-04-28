@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/0xchamin-mcptube-badge.png)](https://mseep.ai/app/0xchamin-mcptube)
+
 # 🎬 mcptube-vision
 
 **YouTube video knowledge engine — transcripts, vision, and persistent wiki.**
